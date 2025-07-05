@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pstyles.css" />
+    <title>Flip Login & Signup</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <!-- Login Form -->
+        <div class="front">
+          <form class="form">
+            <h2><center>Login</center></h2>
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="Enter your email"
+              required />
+            <label for="loginPassword">Password</label>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              required />
+              <a href="http://127.0.0.1:5500/registration/firstpageprofile.html">
+                <button type="button" onclick="redirectToProfile()">Login</button>
+              </a>
+            <p>
+              Don't have an account?
+              <a href="#" onclick="flipToSignup()">Sign up</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="back">
+          <form class="form">
+            <h2><center>Sign Up</center></h2>
+            <label for="signupEmail">Email</label>
+            <input
+              type="email"
+              id="signupEmail"
+              placeholder="Enter your email"
+              required />
+            <label for="signupPassword">Password</label>
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="Enter your password"
+              required />
+            <button type="submit">Sign Up</button>
+            <p>
+              Already have an account?
+              <a href="#" onclick="flipToLogin()">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

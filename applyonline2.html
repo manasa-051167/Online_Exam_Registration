@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualifying Degree & Communication Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            background-color: #d9edf7;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Qualifying Degree Section -->
+    <h2>Qualifying Degree Details</h2>
+    <div class="section">
+        <label for="qualifying-degree">Qualifying Degree:</label>
+        <select id="qualifying-degree">
+            <option>Select Qualifying Degree</option>
+            <option>Bachelor of Technology (B.Tech)</option>
+            <option>Bachelor of Engineering (B.E)</option>
+            <option>Master of Technology (M.Tech)</option>
+            <option>Master of Engineering (M.E)</option>
+            <option>Bachelor of Science (B.Sc)</option>
+            <option>Master of Science (M.Sc)</option>
+            <option>Doctor of Philosophy (PhD)</option>
+        </select>
+
+        <label for="discipline">Discipline of Qualifying Degree:</label>
+        <select id="discipline">
+            <option>Select Discipline</option>
+            <option>Computer Science</option>
+            <option>Electrical Engineering</option>
+            <option>Mechanical Engineering</option>
+            <option>Civil Engineering</option>
+            <option>Electronics and Communication</option>
+            <option>Biotechnology</option>
+            <option>Other</option>
+        </select>
+
+        <label>Have you Graduated in the above Degree?</label>
+        <div class="form-group">
+            <input type="radio" id="graduated-yes" name="graduated" value="Yes"> Yes
+            <input type="radio" id="graduated-no" name="graduated" value="No"> No
+        </div>
+
+        <label for="qualifying-year">Year of Qualifying Degree:</label>
+        <select id="qualifying-year">
+            <option>Select Year</option>
+        </select>
+
+        <label for="college-name">College/University Name:</label>
+        <input type="text" id="college-name" placeholder="Enter College/University Name">
+
+        <label for="city">City/Town:</label>
+        <input type="text" id="city" placeholder="Enter City/Town">
+
+        <label for="state">State/Union Territory:</label>
+        <select id="state">
+            <option>Select State</option>
+        </select>
+
+        <label for="pin-code">PIN Code:</label>
+        <input type="text" id="pin-code" placeholder="Enter PIN Code">
+    </div>
+
+    <!-- Communication Details Section -->
+    <h2>Communication Details</h2>
+    <div class="section">
+        <p><strong>Address for Correspondence:</strong> <em>It must be a valid Indian address.</em></p>
+
+        <div class="form-group">
+            <label>Address Line 1:</label>
+            <input type="text" placeholder="Enter Address Line 1">
+        </div>
+
+        <div class="form-group">
+            <label>Address Line 2:</label>
+            <input type="text" placeholder="Enter Address Line 2">
+        </div>
+
+        <div class="form-group">
+            <label>Address Line 3 (Optional):</label>
+            <input type="text" placeholder="Enter Address Line 3 (Optional)">
+        </div>
+
+        <div class="form-group">
+            <label>City/Town:</label>
+            <input type="text" placeholder="Enter City/Town">
+        </div>
+
+        <div class="form-group">
+            <label>State:</label>
+            <select id="state-communication">
+                <option>Select State</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>PIN Code:</label>
+            <input type="text" placeholder="Enter PIN Code">
+        </div>
+
+        <div class="form-group">
+            <label>Country:</label>
+            <input type="text" value="India" disabled>
+        </div>
+    </div>
+     <a href = "http://127.0.0.1:5500/registration/applyonline3.html">
+    <button onclick="submitForm()">continue</button>
+     </a>
+</div>
+
+<script>
+    // Populate years dynamically
+    function populateYears() {
+        let yearDropdown = document.getElementById("qualifying-year");
+        let currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= 1950; i--) {
+            let option = document.createElement("option");
+            option.text = i;
+            option.value = i;
+            yearDropdown.add(option);
+        }
+    }
+
+    // List of states and union territories
+    const state = [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
+        "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+        "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", 
+        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+        "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", 
+        "Lakshadweep", "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
+    ];
+
+    // Populate states dynamically for both sections
+    function populateStates() {
+        let stateDropdown1 = document.getElementById("state");
+        let stateDropdown2 = document.getElementById("state-communication");
+        state.forEach(stateItem => {
+            let option = document.createElement("option");
+            option.text = stateItem;
+            option.value = stateItem;
+            stateDropdown1.add(option);
+            stateDropdown2.add(option);
+        });
+    }
+
+    // Form validation and submission
+    function submitForm() {
+        const degree = document.getElementById("qualifying-degree").value;
+        const discipline = document.getElementById("discipline").value;
+        const graduatedYes = document.getElementById("graduated-yes").checked;
+        const graduatedNo = document.getElementById("graduated-no").checked;
+        const year = document.getElementById("qualifying-year").value;
+        const college = document.getElementById("college-name").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const pinCode = document.getElementById("pin-code").value;
+
+        if (degree === "Select Qualifying Degree" || discipline === "Select Discipline" || (!graduatedYes && !graduatedNo) ||
+            year === "Select Year" || college.trim() === "" || city.trim() === "" || state === "Select State" || pinCode.trim() === "") {
+            alert("Please fill all fields before submitting.");
+        } else if (!/^\d{6}$/.test(pinCode)) {
+            alert("Invalid PIN Code! It must be 6 digits.");
+        } else {
+            alert("Form submitted successfully!");
+        }
+    }
+
+    // Initialize dropdowns on page load
+    window.onload = function () {
+        populateYears();
+        populateStates();
+    };
+
+    // Populate years dynamically
+    function populateYears() {
+        let yearDropdown = document.getElementById("qualifying-year");
+        let currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= 1950; i--) {
+            let option = document.createElement("option");
+            option.text = i;
+            option.value = i;
+            yearDropdown.add(option);
+        }
+    }
+
+    // List of states and union territories
+    const states = [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
+        "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+        "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", 
+        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+        "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", 
+        "Lakshadweep", "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
+    ];
+
+    // Populate states dynamically for both sections
+    function populateStates() {
+        let stateDropdown1 = document.getElementById("state");  // Qualifying Degree Section
+        let stateDropdown2 = document.getElementById("state-communication");  // Communication Section
+        
+        // Clear previous options before populating
+        stateDropdown1.innerHTML = '<option>Select State</option>';
+        stateDropdown2.innerHTML = '<option>Select State</option>';
+        
+        states.forEach(state => {
+            let option1 = document.createElement("option");
+            option1.text = state;
+            option1.value = state;
+            stateDropdown1.add(option1);
+            
+            let option2 = document.createElement("option");
+            option2.text = state;
+            option2.value = state;
+            stateDropdown2.add(option2);
+        });
+    }
+
+    // Form validation and submission
+    function submitForm() {
+        const degree = document.getElementById("qualifying-degree").value;
+        const discipline = document.getElementById("discipline").value;
+        const graduatedYes = document.getElementById("graduated-yes").checked;
+        const graduatedNo = document.getElementById("graduated-no").checked;
+        const year = document.getElementById("qualifying-year").value;
+        const college = document.getElementById("college-name").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const pinCode = document.getElementById("pin-code").value;
+
+        if (degree === "Select Qualifying Degree" || discipline === "Select Discipline" || (!graduatedYes && !graduatedNo) ||
+            year === "Select Year" || college.trim() === "" || city.trim() === "" || state === "Select State" || pinCode.trim() === "") {
+            alert("Please fill all fields before submitting.");
+        } else if (!/^\d{6}$/.test(pinCode)) {
+            alert("Invalid PIN Code! It must be 6 digits.");
+        } else {
+            alert("Form submitted successfully!");
+        }
+    }
+
+    // Initialize dropdowns on page load
+    window.onload = function () {
+        populateYears();
+        populateStates(); // Ensure states are populated for both sections
+    };
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        .dashboard {
+            width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            text-align: left;
+            display: none;
+        }
+        h2 {
+            color: #004080;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #002a5c;
+        }
+        p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="auth-container">
+        <h2 id="form-title">Login</h2>
+
+        <!-- Login Form -->
+        <div id="login-form">
+            <input type="email" id="login_email" placeholder="Enter Email">
+            <input type="password" id="login_password" placeholder="Enter Password">
+            <label id="login_captcha_question"></label>
+            <input type="text" id="login_captcha" placeholder="Enter Answer">
+            <a href="http://127.0.0.1:5500/registration/applyonline1.html">
+            <button onclick="login()">Login</button></a>
+            <p>New user? <a href="#" onclick="showRegister()">Register here</a></p>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" style="display:none;">
+            <input type="text" id="name" placeholder="Enter Name">
+            <input type="email" id="email" placeholder="Enter Email">
+            <input type="text" id="mobile" placeholder="Enter Mobile Number">
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="password" id="confirm_password" placeholder="Confirm Password">
+            <label id="register_captcha_question"></label>
+            <input type="text" id="register_captcha" placeholder="Enter Answer">
+            <button onclick="register()">Register</button>
+            <p>Already registered? <a href="#" onclick="showLogin()">Login here</a></p>
+        </div>
+    </div>
+
+    <div class="dashboard" id="dashboard">
+        <p>You are logged in as: <b id="user-id">A105H1B</b></p>
+        <h3>Welcome, <span id="user-name">[User]</span></h3>
+        <div style="border: 1px solid blue; padding: 10px;">
+            <h4>Application Status</h4>
+            <p>Application form has been filled partially/not yet submitted. Please click "Edit Application Form" to proceed.</p>
+            <a href ="http://127.0.0.1:5500/applyonline1.html">
+            <button>Edit Application Form</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("form-title").textContent = "GATE 2025 - Login";
+            generateLoginCaptcha();
+        }
+
+        function showRegister() {
+            document.getElementById("register-form").style.display = "block";
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("form-title").textContent = " Register";
+            generateRegisterCaptcha();
+        }
+
+        function generateCaptcha(elementId) {
+            let num1 = Math.floor(Math.random() * 10);
+            let num2 = Math.floor(Math.random() * 10);
+            let sum = num1 + num2;
+            sessionStorage.setItem(elementId, sum);
+            document.getElementById(elementId).textContent = `Solve: ${num1} + ${num2} = ?`;
+        }
+
+        function generateRegisterCaptcha() {
+            generateCaptcha("register_captcha_question");
+        }
+
+        function generateLoginCaptcha() {
+            generateCaptcha("login_captcha_question");
+        }
+
+        window.onload = function() {
+            generateLoginCaptcha();
+        };
+        function login() {
+    let email = document.getElementById("login_email").value;
+    let password = document.getElementById("login_password").value;
+    let captchaAnswer = document.getElementById("login_captcha").value;
+    let expectedAnswer = sessionStorage.getItem("login_captcha_question");
+
+    if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+    }
+
+    if (captchaAnswer != expectedAnswer) {
+        alert("Incorrect captcha answer. Try again.");
+        generateLoginCaptcha();
+        return;
+    }
+
+    // Simulating login success (you should replace this with actual authentication logic)
+    alert("Login successful!");
+    window.location.href = "http://127.0.0.1:5500/registration/applyonline1.html";
+}
+function register() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirm_password").value;
+    let captchaAnswer = document.getElementById("register_captcha").value;
+    let expectedAnswer = sessionStorage.getItem("register_captcha_question");
+
+    if (!name || !email || !mobile || !password || !confirmPassword) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+    }
+
+    if (captchaAnswer != expectedAnswer) {
+        alert("Incorrect captcha answer. Try again.");
+        generateRegisterCaptcha();
+        return;
+    }
+
+    // Simulating successful registration
+    alert("Registration successful! You can now log in.");
+    showLogin(); // Redirect to the login form
+}
+
+    </script>
+
+</body>
+</html>

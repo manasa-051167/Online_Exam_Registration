@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Documents & Declaration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+        }
+        .section {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            background-color: #d9edf7;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            width: 70%;
+            padding: 8px;
+            margin-right: 10px;
+        }
+        .file-status {
+            color: gray;
+            font-size: 12px;
+        }
+        .declaration {
+            background-color: #d9edf7;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .warning {
+            background-color: #f9f2dc;
+            padding: 10px;
+            color: #8a6d3b;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .buttons {
+            margin-top: 15px;
+            text-align: center;
+        }
+        button {
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Upload Documents</h2>
+
+    <div class="section">
+        <div class="form-group">
+            <label>Upload Photograph:</label>
+            <input type="file" id="photoUpload">
+            <span class="file-status" id="photoStatus">No Photograph uploaded!</span>
+        </div>
+
+        <div class="form-group">
+            <label>Upload Signature:</label>
+            <input type="file" id="signatureUpload">
+            <span class="file-status" id="signatureStatus">No Signature uploaded!</span>
+        </div>
+
+        <div class="form-group">
+            <label>Upload Certificate from Principal/HOD:</label>
+            <input type="file" id="certificateUpload">
+            <span class="file-status" id="certificateStatus">No Certificate uploaded!</span>
+        </div>
+    </div>
+
+    <h2>Declaration</h2>
+    <div class="declaration">
+        <p>
+            I hereby declare that all the particulars stated in this application form are true to the best of my knowledge and belief.
+            I have read the information brochure and shall abide by the terms and conditions therein.
+            I accept the responsibility of following all the guidelines and deadlines of the Online Exam Registration 2025 website.
+        </p>
+        <input type="checkbox" id="acceptDeclaration"> I accept the declaration
+    </div>
+
+    <div class="warning">
+        Data once submitted cannot be modified at a later point in time. Kindly verify the details before pressing the
+        "Submit & Proceed to Payment" button.
+    </div>
+
+    <div class="form-group">
+        <label>Where did you first come to know about Online Exam Registration 2025?</label>
+        <select>
+            <option>Select Source of Information</option>
+            <option>College</option>
+            <option>Friends</option>
+            <option>Website</option>
+            <option>Advertisement</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <div class="buttons">
+        <button onclick="saveData()">Save</button>
+        <a href="http://127.0.0.1:5500/registration/payment.html">
+        <button onclick="submitForm()">Submit & Proceed to Payment</button>
+        </a>
+    </div>
+</div>
+
+<script>
+    function saveData() {
+        alert("Data saved successfully!");
+    }
+
+    function submitForm() {
+        if (!document.getElementById("acceptDeclaration").checked) {
+            alert("You must accept the declaration before submitting.");
+            return;
+        }
+        alert("Form submitted successfully!");
+    }
+
+    document.getElementById("photoUpload").addEventListener("change", function () {
+        document.getElementById("photoStatus").innerText = this.files.length ? "Photo uploaded!" : "No Photograph uploaded!";
+    });
+
+    document.getElementById("signatureUpload").addEventListener("change", function () {
+        document.getElementById("signatureStatus").innerText = this.files.length ? "Signature uploaded!" : "No Signature uploaded!";
+    });
+
+    document.getElementById("certificateUpload").addEventListener("change", function () {
+        document.getElementById("certificateStatus").innerText = this.files.length ? "Certificate uploaded!" : "No Certificate uploaded!";
+    });
+</script>
+
+</body>
+</html>
